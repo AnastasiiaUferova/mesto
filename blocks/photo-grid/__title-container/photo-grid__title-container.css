@@ -1,0 +1,4 @@
+.photo-grid__title-container {
+    display: flex;
+    justify-content: space-between; 
+}

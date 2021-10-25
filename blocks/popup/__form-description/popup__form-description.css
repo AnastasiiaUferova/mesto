@@ -1,0 +1,31 @@
+.popup__form-description {
+    width: 358px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 0;
+    border-bottom: 1px solid rgba(229, 229, 229, 0.8);
+    align-self: center;
+    margin-bottom: 48px;
+    padding: 0;
+    padding-bottom: 13px;
+    box-sizing: content-box;
+}
+
+.popup__form-description:active {
+    outline-color: cornflowerblue;
+}
+
+@media (max-width: 460px) {
+    .popup__form-description {
+        width: 238px;
+        font-size: 14px;
+        line-height: 17px;
+        margin-bottom: 45px;
+    }
+}
