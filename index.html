@@ -18,11 +18,11 @@
                     <img src="./images/Аватар.png" alt="Аватар" class="profile__avatar" />
                     <div class="profile__info">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <button class="profile__edit-button"></button>
+                        <button class="profile__edit-button" type="button"></button>
                         <p class="profile__subtitle">Исследователь океана</p>
                     </div>
                 </div>
-                <button class="profile__add-button"></button>
+                <button class="profile__add-button" type="button"></button>
             </section>
 
             <section class="photo-grid root__photo-grid">
@@ -30,7 +30,7 @@
                     <img src="./images/Карачаевск.png" alt="Собор в Карачаевске" class="photo-grid__pic" />
                     <div class="photo-grid__title-container">
                         <h2 class="photo-grid__title">Карачаевск</h2>
-                        <button class="photo-grid__like"></button>
+                        <button class="photo-grid__like" type="button"></button>
                     </div>
                 </div>
 
@@ -81,12 +81,12 @@
         </footer>
 
         <section class="popup">
-            <button class="popup__close-button"></button>
             <div class="popup__container">
+                <button class="popup__close-button" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form class="popup__form-info">
-                    <input type="text" name="username" value="Жак-Ив Кусто" class="popup__form-name" />
-                    <input type="text" name="description" value="Исследователь океана" class="popup__form-description" />
+                    <input type="text" name="username" value="Жак-Ив Кусто" class="popup__input popup__input_type_name" />
+                    <input type="text" name="description" value="Исследователь океана" class="popup__input popup__input_type_job" />
                     <button class="popup__save-button" type="submit">Сохранить</button>
                 </form>
             </div>

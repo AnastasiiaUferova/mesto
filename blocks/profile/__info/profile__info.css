@@ -13,7 +13,8 @@
 @media (max-width: 657px) {
     .profile__info {
         max-width: 282px;
-        margin-top: 26px;
+        grid-template-rows: 26px 14px;
+        margin-top: 22.25px;
         margin-bottom: 36px;
         margin-left: 0;
         gap: 14px 10px;

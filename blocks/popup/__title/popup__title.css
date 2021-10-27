@@ -1,5 +1,5 @@
 .popup__title {
-    font-family: Inter;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     font-style: normal;
     font-weight: 900;
     font-size: 24px;
@@ -10,6 +10,7 @@
     margin-block-start: 0;
     margin-block-end: 0;
     margin-top: 34px;
+    margin-bottom: 54px;
 }
 
 @media (max-width: 460px) {

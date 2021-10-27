@@ -9,8 +9,8 @@
     transition: 0.3s ease-in-out;
     border: none;
     position: absolute;
-    left: 863px;
-    top: 155px;
+    top: -48px;
+    right: -48px;
 }
 
 .popup__close-button:hover {
@@ -22,7 +22,7 @@
     .popup__close-button {
         width: 20px;
         height: 20px;
-        left: 281px;
-        top: 87px;
+        top: -33px;
+        right: 0px;
     }
 }

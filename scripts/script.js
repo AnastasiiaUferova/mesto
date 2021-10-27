@@ -4,22 +4,24 @@
 const popupElement = document.querySelector(".popup");
 const closePopupButtonElement = popupElement.querySelector(".popup__close-button");
 const formElement = popupElement.querySelector(".popup__form-info");
-let nameInput = popupElement.querySelector(".popup__form-name");
-let jobInput = popupElement.querySelector(".popup__form-description");
+let nameInput = popupElement.querySelector(".popup__input_type_name");
+let jobInput = popupElement.querySelector(".popup__input_type_job");
 
 //profile
 const openPopupButtonElement = document.querySelector(".profile__edit-button");
-let ProfileElement = document.querySelector(".profile");
-let ProfileNameElement = ProfileElement.querySelector(".profile__name");
-let ProfileDescriptionElement = ProfileElement.querySelector(".profile__subtitle");
+let profileElement = document.querySelector(".profile");
+let profileNameElement = profileElement.querySelector(".profile__name");
+let profileDescriptionElement = profileElement.querySelector(".profile__subtitle");
 
 // Закрытие и открытие попапа
 const openPopup = function () {
+    nameInput.value = profileNameElement.textContent;
     popupElement.classList.add("popup_opened");
 };
 
 const closePopup = function () {
     popupElement.classList.remove("popup_opened");
+    nameInput.value = profileNameElement;
 };
 
 // Добавление EventListener для закрытия и открытия попапа
@@ -31,13 +33,12 @@ closePopupButtonElement.addEventListener("click", closePopup);
 
 function formSubmitHandler(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-    // Получение значение полей jobInput и nameInput из свойства value
     let NewName = nameInput.value;
     let NewJob = jobInput.value;
 
     // Вставка новых значений с помощью textContent
-    ProfileNameElement.textContent = NewName;
-    ProfileDescriptionElement.textContent = NewJob;
+    profileNameElement.textContent = NewName;
+    profileDescriptionElement.textContent = NewJob;
 
     closePopup();
 }
