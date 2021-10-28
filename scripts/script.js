@@ -16,12 +16,12 @@ let profileDescriptionElement = profileElement.querySelector(".profile__subtitle
 // Закрытие и открытие попапа
 const openPopup = function () {
     nameInput.value = profileNameElement.textContent;
+    jobInput.value = profileDescriptionElement.textContent;
     popupElement.classList.add("popup_opened");
 };
 
 const closePopup = function () {
     popupElement.classList.remove("popup_opened");
-    nameInput.value = profileNameElement;
 };
 
 // Добавление EventListener для закрытия и открытия попапа
@@ -33,12 +33,12 @@ closePopupButtonElement.addEventListener("click", closePopup);
 
 function formSubmitHandler(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-    let NewName = nameInput.value;
-    let NewJob = jobInput.value;
+    let newName = nameInput.value;
+    let newJob = jobInput.value;
 
     // Вставка новых значений с помощью textContent
-    profileNameElement.textContent = NewName;
-    profileDescriptionElement.textContent = NewJob;
+    profileNameElement.textContent = newName;
+    profileDescriptionElement.textContent = newJob;
 
     closePopup();
 }
