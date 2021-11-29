@@ -51,5 +51,6 @@
 @import url(../blocks/popup/__pic/popup__pic.css);
 @import url(../blocks/popup/__subtitle/popup__subtitle.css);
 @import url(../blocks/popup/_type/popup_type_pic-opened.css);
+@import url(../blocks/popup/__container/_type/popup__container_type_form.css);
 
 
