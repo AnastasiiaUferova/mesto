@@ -33,3 +33,23 @@
 @import url(../blocks/photo-grid/__pic/photo-grid__pic.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+@import url(../blocks/popup/_type/popup_type_edit.css);
+@import url(../blocks/popup/_type/popup_type_new-card.css);
+@import url(../blocks/popup/_type/popup_type_pic.css);
+@import url(../blocks/popup/__close-button/_type/popup__close-button_type_edit.css);
+@import url(../blocks/popup/__close-button/_type/popup__close-button_type_new-card.css);
+@import url(../blocks/popup/__form-info/_type/popup__form-info_type_edit.css);
+@import url(../blocks/popup/__form-info/_type/popup__form-info_type_new-card.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_placename.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_url.css);
+@import url(../blocks/popup/__save-button/_type/popup__save-button_type_edit.css);
+@import url(../blocks/popup/__save-button/_type/popup__save-button_type_new-card.css);
+@import url(../blocks/template/template.css);
+@import url(../blocks/photo-grid/__delete-button/photo-grid__delete-button.css);
+@import url(../blocks/popup/__close-button/_type/popup__close-button_type_pic.css);
+@import url(../blocks/popup/__container/_type/popup__container_type_pic.css);
+@import url(../blocks/popup/__pic/popup__pic.css);
+@import url(../blocks/popup/__subtitle/popup__subtitle.css);
+@import url(../blocks/popup/_type/popup_type_pic-opened.css);
+
+

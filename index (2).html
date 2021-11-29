@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./index.css" />
+		<title>Templates</title>
+	</head>
+	<body>
+		<div class="todo">
+			<h1 class="title">Todo List</h1>
+			<form class="form">
+				<input
+					type="text"
+					class="form__input"
+					placeholder="Следующее дело..."
+				/>
+				<input type="button" class="form__submit" value="Добавить" />
+			</form>
+			<ul class="list"></ul>
+		</div>
+		<script src="script.js" type="module"></script>
+		<footer class="footer">© Yandex.Praktikum 2021</footer>
+
+		<template class="item_template">
+			<li class="list__item">
+				<span class="item__text"></span>
+				<img class="edit" src="images/Edit.png" alt="Редактировать" />
+				<img
+					class="duplicate"
+					src="images/Duplicate.png"
+					alt="Копировать"
+				/>
+				<img class="delete" src="images/Delete.png" alt="Удалить" />
+			</li>
+		</template>
+	</body>
+</html>

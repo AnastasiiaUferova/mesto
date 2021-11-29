@@ -24,73 +24,61 @@
                 </div>
                 <button class="profile__add-button" type="button"></button>
             </section>
-
-            <section class="photo-grid root__photo-grid">
-                <div class="photo-grid__item">
-                    <img src="./images/Карачаевск.png" alt="Собор в Карачаевске" class="photo-grid__pic" />
-                    <div class="photo-grid__title-container">
-                        <h2 class="photo-grid__title">Карачаевск</h2>
-                        <button class="photo-grid__like" type="button"></button>
-                    </div>
-                </div>
-
-                <div class="photo-grid__item">
-                    <img src="./images/Эльбрус.png" alt="Закат на Эльбрусе" class="photo-grid__pic" />
-                    <div class="photo-grid__title-container">
-                        <h2 class="photo-grid__title">Гора Эльбрус</h2>
-                        <button class="photo-grid__like"></button>
-                    </div>
-                </div>
-
-                <div class="photo-grid__item">
-                    <img src="./images/Dombay.png" alt="Гора на Домбае" class="photo-grid__pic" />
-                    <div class="photo-grid__title-container">
-                        <h2 class="photo-grid__title">Домбай</h2>
-                        <button class="photo-grid__like"></button>
-                    </div>
-                </div>
-
-                <div class="photo-grid__item">
-                    <img src="./images/Эльбрус.png" alt="Закат на Эльбрус" class="photo-grid__pic" />
-                    <div class="photo-grid__title-container">
-                        <h2 class="photo-grid__title">Эльбрус</h2>
-                        <button class="photo-grid__like"></button>
-                    </div>
-                </div>
-
-                <div class="photo-grid__item">
-                    <img src="./images/Dombay.png" alt="Гора на Домбае" class="photo-grid__pic" />
-                    <div class="photo-grid__title-container">
-                        <h2 class="photo-grid__title">Домбай</h2>
-                        <button class="photo-grid__like"></button>
-                    </div>
-                </div>
-
-                <div class="photo-grid__item">
-                    <img src="./images/Карачаевск.png" alt="Собор в Карачаевске" class="photo-grid__pic" />
-                    <div class="photo-grid__title-container">
-                        <h2 class="photo-grid__title">Карачаево-Черкесия</h2>
-                        <button class="photo-grid__like"></button>
-                    </div>
-                </div>
-            </section>
         </main>
+
+        <ul class="photo-grid root__photo-grid"></ul>
 
         <footer class="footer">
             <p class="footer__copyright">© 2020 Mesto Russia</p>
         </footer>
 
-        <section class="popup">
+
+        <template class="template">
+            <li class="photo-grid__item">
+                <button class=photo-grid__delete-button></button>
+                <img src="" alt="" class="photo-grid__pic" />
+                <div class="photo-grid__title-container">
+                    <h2 class="photo-grid__title"></h2>
+                    <button class="photo-grid__like"></button>
+                </div>
+            </li>
+		</template>
+
+        <section class="popup_type_pic">
+            <div class="popup__container_type_pic">
+                <button class="popup__close-button popup__close-button_type_pic" type="button"></button>
+                <img src="." alt="." class="popup__pic">
+                <h3 class="popup__subtitle">.</h3>
+            </div>
+        </section>
+
+
+        <section class="popup popup_type_edit">
             <div class="popup__container">
-                <button class="popup__close-button" type="button"></button>
+                <button class="popup__close-button popup__close-button_type_edit" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form class="popup__form-info">
-                    <input type="text" name="username" value="Жак-Ив Кусто" class="popup__input popup__input_type_name" />
-                    <input type="text" name="description" value="Исследователь океана" class="popup__input popup__input_type_job" />
+                <form class="popup__form-info popup__form-info_type_edit">
+                    <input type="text" name="username" value="Жак-Ив Кусто" class="popup__input popup__input_type_name">
+                    <input type="text" name="description" value="Исследователь океана" class="popup__input popup__input_type_job">
                     <button class="popup__save-button" type="submit">Сохранить</button>
                 </form>
             </div>
         </section>
+
+
+        <section class="popup popup_type_new-card">
+            <div class="popup__container">
+                <button class="popup__close-button popup__close-button_type_new-card" type="button"></button>
+                <h2 class="popup__title">Новое место</h2>
+                <form class="popup__form-info popup__form-info_type_new-card">
+                    <input type="text" name="placename" value="" class="popup__input popup__input_type_placename" placeholder="Название">
+                    <input type="url" name="link" value="" class="popup__input popup__input_type_url" placeholder="Ссылка на картинку">
+                    <button class="popup__save-button popup__save-button_type_new-card" type="submit">Создать</button>
+                </form>
+            </div>
+        </section>
+
+
 
         <script src="./scripts/script.js"></script>
     </body>
