@@ -1,15 +1,44 @@
+// Добавляем изначальные карточки на сайт
+
+const initialCards = [
+    {
+        name: "Архыз",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+    },
+    {
+        name: "Челябинская область",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+    },
+    {
+        name: "Иваново",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+    },
+    {
+        name: "Камчатка",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+    },
+    {
+        name: "Холмогорский район",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+    },
+    {
+        name: "Байкал",
+        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+    },
+];
+
 //Передаем элементы попапа  в DOM
 
 //popup-edit
 const popupEditElement = document.querySelector(".popup_type_edit");
 const formEditElement = popupEditElement.querySelector(".popup__form-info_type_edit");
-let nameInput = popupEditElement.querySelector(".popup__input_type_name");
-let jobInput = popupEditElement.querySelector(".popup__input_type_job");
+const nameInput = popupEditElement.querySelector(".popup__input_type_name");
+const jobInput = popupEditElement.querySelector(".popup__input_type_job");
 
 //profile
-let profileElement = document.querySelector(".profile");
-let profileNameElement = profileElement.querySelector(".profile__name");
-let profileDescriptionElement = profileElement.querySelector(".profile__subtitle");
+const profileElement = document.querySelector(".profile");
+const profileNameElement = profileElement.querySelector(".profile__name");
+const profileDescriptionElement = profileElement.querySelector(".profile__subtitle");
 
 // popup-new-card
 
@@ -19,21 +48,22 @@ const formCardElement = popupCardElement.querySelector(".popup__form-info_type_n
 //popup-pic
 
 const popupPicElement = document.querySelector(".popup_type_pic");
+const popupPicSubtitle = document.querySelector(".popup__subtitle");
 
 // Переменные для добавления карточек
 
-const list = document.querySelector(".photo-grid");
+const cardsContainer = document.querySelector(".photo-grid");
 const itemTemplate = document.querySelector(".template");
-let photoTitleElement = document.querySelector(".photo-grid__titile");
-let photoLinkElement = document.querySelector(".photo-grid__pic");
-let placeNameInput = popupCardElement.querySelector(".popup__input_type_placename");
-let placeUrlInput = popupCardElement.querySelector(".popup__input_type_url");
-const saveCardButton = popupCardElement.querySelector(".popup__save-button_type_new-card");
+const placeNameInput = popupCardElement.querySelector(".popup__input_type_placename");
+const placeUrlInput = popupCardElement.querySelector(".popup__input_type_url");
+const photoForm = document.querySelector(".popup__form-info_type_new-card");
+const popupPic = document.querySelector(".popup__pic");
 
 //popups: close-buttons
 const closeEditPopupButtonElement = popupEditElement.querySelector(".popup__close-button_type_edit");
 const closeCardPopupButtonElement = popupCardElement.querySelector(".popup__close-button_type_new-card");
 const closePicPopupButton = popupPicElement.querySelector(".popup__close-button_type_pic");
+const picCloseButton = document.querySelector(".popup__close-button_type_pic");
 
 // popups: open-buttons
 
@@ -70,12 +100,17 @@ closeEditPopupButtonElement.addEventListener("click", function () {
     closePopup(popupEditElement);
 });
 
+function closePicture(event) {
+    event.target.closest(".popup_type_pic").classList.remove("popup_opened");
+}
+picCloseButton.addEventListener("click", closePicture);
+
 // Изменение данных в профиле
 
-function formSubmitHandler(evt) {
+function submitProfileForm(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-    let newName = nameInput.value;
-    let newJob = jobInput.value;
+    const newName = nameInput.value;
+    const newJob = jobInput.value;
 
     // Вставка новых значений с помощью textContent
     profileNameElement.textContent = newName;
@@ -85,55 +120,28 @@ function formSubmitHandler(evt) {
 }
 
 // Прикрепляем обработчик к форме:
-formEditElement.addEventListener("submit", formSubmitHandler);
-
-// Добавляем изначальные карточки на сайт
-
-const initialCards = [
-    {
-        name: "Архыз",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    },
-    {
-        name: "Челябинская область",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    },
-    {
-        name: "Иваново",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    },
-    {
-        name: "Камчатка",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    },
-    {
-        name: "Холмогорский район",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    },
-    {
-        name: "Байкал",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    },
-];
+formEditElement.addEventListener("submit", submitProfileForm);
 
 // Добавление элементов на страницу (общая функция)
 
-function main() {
+function render() {
     for (let i = 0; i < initialCards.length; i++) {
         const cardname = initialCards[i].name;
         const cardlink = initialCards[i].link;
         renderCard(cardname, cardlink);
     }
-    saveCardButton.addEventListener("click", handleSubmitPic);
+    photoForm.addEventListener("submit", submitNewCard);
 }
 
 // Шаблон добавления карточки
 function getCard(name, link) {
-    const htmlElement = itemTemplate.content.cloneNode(true);
     //1. Заменять в разметке текст и ссыылки
-    htmlElement.querySelector(".photo-grid__title").textContent = name;
-    htmlElement.querySelector(".photo-grid__pic").src = link;
-    htmlElement.querySelector(".photo-grid__pic").alt = name;
+    const htmlElement = itemTemplate.content.cloneNode(true);
+    const picElement = htmlElement.querySelector(".photo-grid__pic");
+    const titlePicElement = htmlElement.querySelector(".photo-grid__title");
+    titlePicElement.textContent = name;
+    picElement.src = link;
+    picElement.alt = name;
 
     // 2. Навесить события: like
     htmlElement.querySelector(".photo-grid__like").addEventListener("click", function (evt) {
@@ -142,22 +150,14 @@ function getCard(name, link) {
 
     //3. Открытие попапа картинки
 
-    htmlElement.querySelector(".photo-grid__pic").addEventListener("click", function () {
-        document.querySelector(".popup__subtitle").textContent = name;
-        document.querySelector(".popup__pic").src = link;
-        document.querySelector(".popup__pic").alt = name;
-        popupPicElement.classList.add("popup_type_pic-opened");
+    picElement.addEventListener("click", function () {
+        popupPicSubtitle.textContent = name;
+        popupPic.src = link;
+        popupPic.alt = name;
+        openPopup(popupPicElement);
     });
 
-    // 4. Закрытие попапа картинки
-
-    function closePicture(event) {
-        event.target.closest(".popup_type_pic").classList.remove("popup_type_pic-opened");
-    }
-    const picCloseButton = document.querySelector(".popup__close-button_type_pic");
-    picCloseButton.addEventListener("click", closePicture);
-
-    //5. Удаление карточки
+    //4. Удаление карточки
 
     function handleDelete(event) {
         event.target.closest(".photo-grid__item").remove();
@@ -171,21 +171,21 @@ function getCard(name, link) {
 // Добавление первоначального массива
 function renderCard(name, link) {
     const initialCard = getCard(name, link);
-    list.appendChild(initialCard);
+    cardsContainer.appendChild(initialCard);
 }
 
 // Добавление новой карточки
-function handleSubmitPic(evt) {
+function submitNewCard(evt) {
     evt.preventDefault();
     //1. Взять значение из инпута
     const nameValue = placeNameInput.value;
     const linkValue = placeUrlInput.value;
-    const Newcard = getCard(nameValue, linkValue);
+    const newCard = getCard(nameValue, linkValue);
 
     //2. Добавить в список
-    list.prepend(Newcard);
+    cardsContainer.prepend(newCard);
 
     closePopup(popupCardElement);
 }
 
-main();
+render();
