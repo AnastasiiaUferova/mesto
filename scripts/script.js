@@ -101,7 +101,7 @@ closeEditPopupButtonElement.addEventListener("click", function () {
 });
 
 function closePicture(event) {
-    event.target.closest(".popup_type_pic").classList.remove("popup_opened");
+    closePopup(event.target.closest(".popup_type_pic"));
 }
 picCloseButton.addEventListener("click", closePicture);
 
