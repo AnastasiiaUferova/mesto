@@ -100,10 +100,10 @@ closeEditPopupButtonElement.addEventListener("click", function () {
     closePopup(popupEditElement);
 });
 
-function closePicture(event) {
-    closePopup(event.target.closest(".popup_type_pic"));
-}
-picCloseButton.addEventListener("click", closePicture);
+
+picCloseButton.addEventListener("click", function () {
+    closePopup(popupPicElement);
+});
 
 // Изменение данных в профиле
 
