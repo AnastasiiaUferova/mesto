@@ -80,6 +80,15 @@ const closePopup = function (popup) {
     popup.classList.remove("popup_opened");
 };
 
+// Закрытие попапа по клику на overlay
+const closePopupByClickOnOverlay = function(event) {
+    if (event.target !== event.currentTarget) {
+    return
+    }
+    document.querySelector(".popup_opened").classList.remove("popup_opened");
+}
+
+
 //Eventlisteners popups
 openEditPopupButtonElement.addEventListener("click", function () {
     openPopup(popupEditElement);
@@ -104,6 +113,21 @@ closeEditPopupButtonElement.addEventListener("click", function () {
 picCloseButton.addEventListener("click", function () {
     closePopup(popupPicElement);
 });
+
+  // Регистрируем обработчики событий по клику на overlay
+
+popupCardElement.addEventListener('click', closePopupByClickOnOverlay);
+popupPicElement.addEventListener('click', closePopupByClickOnOverlay);
+popupEditElement.addEventListener('click', closePopupByClickOnOverlay);
+
+//Закрытие попапов по клику на Esc
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === 'Escape' || event.key === 'Esc') {
+        document.querySelector(".popup_opened").classList.remove("popup_opened");
+    }});
+
+
 
 // Изменение данных в профиле
 
@@ -189,3 +213,7 @@ function submitNewCard(evt) {
 }
 
 render();
+
+
+
+
