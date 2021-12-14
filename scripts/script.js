@@ -70,24 +70,44 @@ const picCloseButton = document.querySelector(".popup__close-button_type_pic");
 const openEditPopupButtonElement = document.querySelector(".profile__edit-button");
 const openCardPopupButtonElement = document.querySelector(".profile__add-button");
 
+// Деактивировать кнопку отправки
+
+function disableSubmit() {
+    const saveButton = document.querySelector(".popup__save-button_type_new-card");
+    if (placeNameInput.value === "" || placeUrlInput.value === "") {
+        saveButton.classList.add("popup__save-button_inactive");
+        saveButton.disabled = true;
+    }
+}
+
 // Закрытие и открытие попапов
 
 const openPopup = function (popup) {
     popup.classList.add("popup_opened");
+    document.addEventListener("keydown", closeByEscape);
 };
 
 const closePopup = function (popup) {
     popup.classList.remove("popup_opened");
+    document.removeEventListener("keydown", closeByEscape);
 };
 
 // Закрытие попапа по клику на overlay
-const closePopupByClickOnOverlay = function(event) {
+const closePopupByClickOnOverlay = function (event) {
     if (event.target !== event.currentTarget) {
-    return
+        return;
     }
-    document.querySelector(".popup_opened").classList.remove("popup_opened");
-}
+    closePopup(event.target);
+};
 
+//Закрытие попапов по клику на Esc
+
+function closeByEscape(event) {
+    if (event.key === "Escape" || event.key === "Esc") {
+        const openedPopup = document.querySelector(".popup_opened");
+        closePopup(openedPopup);
+    }
+}
 
 //Eventlisteners popups
 openEditPopupButtonElement.addEventListener("click", function () {
@@ -98,6 +118,7 @@ openEditPopupButtonElement.addEventListener("click", function () {
 
 openCardPopupButtonElement.addEventListener("click", function () {
     formCardElement.reset();
+    disableSubmit();
     openPopup(popupCardElement);
 });
 
@@ -109,25 +130,15 @@ closeEditPopupButtonElement.addEventListener("click", function () {
     closePopup(popupEditElement);
 });
 
-
 picCloseButton.addEventListener("click", function () {
     closePopup(popupPicElement);
 });
 
-  // Регистрируем обработчики событий по клику на overlay
+// Регистрируем обработчики событий по клику на overlay
 
-popupCardElement.addEventListener('click', closePopupByClickOnOverlay);
-popupPicElement.addEventListener('click', closePopupByClickOnOverlay);
-popupEditElement.addEventListener('click', closePopupByClickOnOverlay);
-
-//Закрытие попапов по клику на Esc
-
-document.addEventListener("keydown", function (event) {
-    if (event.key === 'Escape' || event.key === 'Esc') {
-        document.querySelector(".popup_opened").classList.remove("popup_opened");
-    }});
-
-
+popupCardElement.addEventListener("click", closePopupByClickOnOverlay);
+popupPicElement.addEventListener("click", closePopupByClickOnOverlay);
+popupEditElement.addEventListener("click", closePopupByClickOnOverlay);
 
 // Изменение данных в профиле
 
@@ -197,7 +208,6 @@ function renderCard(name, link) {
     const initialCard = getCard(name, link);
     cardsContainer.appendChild(initialCard);
 }
-
 // Добавление новой карточки
 function submitNewCard(evt) {
     evt.preventDefault();
@@ -208,6 +218,7 @@ function submitNewCard(evt) {
 
     //2. Добавить в список
     cardsContainer.prepend(newCard);
+    disableSubmit();
 
     closePopup(popupCardElement);
 }
