@@ -1,3 +1,5 @@
+import Card from "./Card.js";
+
 // Добавляем изначальные карточки на сайт
 
 const initialCards = [
@@ -53,7 +55,6 @@ const popupPicSubtitle = document.querySelector(".popup__subtitle");
 // Переменные для добавления карточек
 
 const cardsContainer = document.querySelector(".photo-grid");
-const itemTemplate = document.querySelector(".template");
 const placeNameInput = popupCardElement.querySelector(".popup__input_type_placename");
 const placeUrlInput = popupCardElement.querySelector(".popup__input_type_url");
 const photoForm = document.querySelector(".popup__form-info_type_new-card");
@@ -62,7 +63,6 @@ const popupPic = document.querySelector(".popup__pic");
 //popups: close-buttons
 const closeEditPopupButtonElement = popupEditElement.querySelector(".popup__close-button_type_edit");
 const closeCardPopupButtonElement = popupCardElement.querySelector(".popup__close-button_type_new-card");
-const closePicPopupButton = popupPicElement.querySelector(".popup__close-button_type_pic");
 const picCloseButton = document.querySelector(".popup__close-button_type_pic");
 
 // popups: open-buttons
@@ -160,70 +160,37 @@ formEditElement.addEventListener("submit", submitProfileForm);
 // Добавление элементов на страницу (общая функция)
 
 function render() {
+    // Добавление первоначального массива
     for (let i = 0; i < initialCards.length; i++) {
-        const cardname = initialCards[i].name;
-        const cardlink = initialCards[i].link;
-        renderCard(cardname, cardlink);
+        // Создадим экземпляр карточки
+        const card = new Card(initialCards[i].name, initialCards[i].link);
+        // Создаём карточку и возвращаем наружу
+        const cardElement = card.generateCard();
+        // Добавляем в DOM
+        cardsContainer.append(cardElement);
     }
     photoForm.addEventListener("submit", submitNewCard);
 }
 
-// Шаблон добавления карточки
-function getCard(name, link) {
-    //1. Заменять в разметке текст и ссыылки
-    const htmlElement = itemTemplate.content.cloneNode(true);
-    const picElement = htmlElement.querySelector(".photo-grid__pic");
-    const titlePicElement = htmlElement.querySelector(".photo-grid__title");
-    titlePicElement.textContent = name;
-    picElement.src = link;
-    picElement.alt = name;
-
-    // 2. Навесить события: like
-    htmlElement.querySelector(".photo-grid__like").addEventListener("click", function (evt) {
-        evt.target.classList.toggle("photo-grid__like_active");
-    });
-
-    //3. Открытие попапа картинки
-
-    picElement.addEventListener("click", function () {
-        popupPicSubtitle.textContent = name;
-        popupPic.src = link;
-        popupPic.alt = name;
-        openPopup(popupPicElement);
-    });
-
-    //4. Удаление карточки
-
-    function handleDelete(event) {
-        event.target.closest(".photo-grid__item").remove();
-    }
-    htmlElement.querySelector(".photo-grid__delete-button").addEventListener("click", handleDelete);
-
-    //6. Возвращать карточку
-    return htmlElement;
-}
-
-// Добавление первоначального массива
-function renderCard(name, link) {
-    const initialCard = getCard(name, link);
-    cardsContainer.appendChild(initialCard);
-}
 // Добавление новой карточки
 function submitNewCard(evt) {
     evt.preventDefault();
     //1. Взять значение из инпута
     const nameValue = placeNameInput.value;
     const linkValue = placeUrlInput.value;
-    const newCard = getCard(nameValue, linkValue);
+    const newCard = new Card(nameValue, linkValue);
+    const newCardElement = newCard.generateCard();
 
     //2. Добавить в список
-    cardsContainer.prepend(newCard);
+    cardsContainer.prepend(newCardElement);
     disableSubmit();
 
     closePopup(popupCardElement);
 }
 
 render();
+
+export { openPopup, popupPicElement, popupPicSubtitle, popupPic, formEditElement, formCardElement };
 
 
 
