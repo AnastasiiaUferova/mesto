@@ -1,3 +1,5 @@
+import { placeNameInput, placeUrlInput } from './constants.js'
+
 export class FormValidator {
     constructor(data, form) {
         this._formSelector = data.formSelector;
@@ -57,16 +59,18 @@ export class FormValidator {
         });
     }
 
-    enableValidation() {
-        const forms = document.querySelectorAll(this._formSelector);
-
-        forms.forEach((form) => {
-            form.addEventListener("submit", (event) => {
-                event.preventDefault();
-            });
-
-            this._setInputListeners();
-        });
+    disableSubmit(button) {
+        if (placeNameInput.value === "" || placeUrlInput.value === "") {
+            button.classList.add(this._inactiveButtonClass);
+            button.disabled = true;
+        }
     }
+
+    enableValidation() {
+        this._setInputListeners();
+    };
+    
 }
+
+
 

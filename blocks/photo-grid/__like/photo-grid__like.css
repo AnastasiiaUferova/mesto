@@ -4,12 +4,13 @@
     background-position: center;
     background-repeat: no-repeat;
     transition: 0.3s ease-in-out;
-    width: 35px;
+    width: 45px;
     height: 30px;
     align-self: center;
     border: none;
     padding: 0;
     background-color: transparent;
+    flex-flow: column nowrap;
 }
 
 .photo-grid__like:hover {

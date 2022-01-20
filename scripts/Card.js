@@ -1,4 +1,5 @@
-import { openPopup, popupPicElement, popupPicSubtitle, popupPic } from "./script.js";
+import { popupPicElement, popupPicSubtitle, popupPic } from "./constants.js";
+import { openPopup } from "./utils.js"
 
 export default class Card {
     constructor(name, link) {
@@ -42,10 +43,12 @@ export default class Card {
 
     _handleDeleteCard = () => {
         this._element.remove();
+        this._element = null;
+        
     };
 
     _handleOpenPicPopup = () => {
-        popupPicSubtitle.textContent = this.name;
+        popupPicSubtitle.textContent = this._name;
         popupPic.alt = this._name;
         popupPic.src = this._link;
         openPopup(popupPicElement);
