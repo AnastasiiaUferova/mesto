@@ -1,10 +1,10 @@
-import { popupPicElement, popupPicSubtitle, popupPic } from "./constants.js";
-import { openPopup } from "./utils.js"
-
 export default class Card {
-    constructor(name, link) {
-        this._name = name;
-        this._link = link;
+    constructor(data, handleOpenPicPopup) {
+        this._data = data;
+        this._name = data.name;
+        this._link = data.link;
+        this._handleOpenPicPopup = handleOpenPicPopup;
+        
     }
     // здесь выполним все необходимые операции, чтобы вернуть разметку, логика обработки разметки
     _getTemplate() {
@@ -33,8 +33,10 @@ export default class Card {
 
         this._element.querySelector(".photo-grid__delete-button").addEventListener("click", this._handleDeleteCard);
 
-        // Открытие попапа
+        //Открытие попапа
+
         this._element.querySelector(".photo-grid__pic").addEventListener("click", this._handleOpenPicPopup);
+        
     }
 
     _handleLikeToggle() {
@@ -47,10 +49,4 @@ export default class Card {
         
     };
 
-    _handleOpenPicPopup = () => {
-        popupPicSubtitle.textContent = this._name;
-        popupPic.alt = this._name;
-        popupPic.src = this._link;
-        openPopup(popupPicElement);
-    };
 }

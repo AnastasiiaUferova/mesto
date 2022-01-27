@@ -1,7 +1,8 @@
-import Card from "./Card.js";
-import { openPopup, closePopup} from './utils.js'
-import { placeUrlInput, placeNameInput, initialCards, enableValidation, popupPicElement, formEditElement, formCardElement, popupEditElement, popupCardElement} from "./constants.js"
-import { FormValidator } from "./FormValidator.js";
+import Card from "../components/Card.js";
+import { popupPicSelector, cardListSelector, placeUrlInput, placeNameInput, initialCards, enableValidation, popupPicElement, formEditElement, formCardElement, popupEditElement, popupCardElement, picCloseButton} from "../utils/constants.js"
+import { FormValidator } from "../components/FormValidator.js";
+import { Section } from '../components/Section.js'
+import PopupWithImage from "../components/PopupWithImage.js";
 
 
 //Передаем элементы попапа  в DOM
@@ -25,7 +26,7 @@ const photoForm = document.querySelector(".popup__form-info_type_new-card");
 //popups: close-buttons
 const closeEditPopupButtonElement = popupEditElement.querySelector(".popup__close-button_type_edit");
 const closeCardPopupButtonElement = popupCardElement.querySelector(".popup__close-button_type_new-card");
-const picCloseButton = document.querySelector(".popup__close-button_type_pic");
+
 
 // popups: open-buttons
 
@@ -36,14 +37,6 @@ const openCardPopupButtonElement = document.querySelector(".profile__add-button"
 
 const saveButton = document.querySelector(".popup__save-button_type_new-card");
 
-
-// Закрытие попапа по клику на overlay
-const closePopupByClickOnOverlay = function (event) {
-    if (event.target !== event.currentTarget) {
-        return;
-    }
-    closePopup(event.target);
-};
 
 
 //Eventlisteners popups
@@ -67,15 +60,6 @@ closeEditPopupButtonElement.addEventListener("click", function () {
     closePopup(popupEditElement);
 });
 
-picCloseButton.addEventListener("click", function () {
-    closePopup(popupPicElement);
-});
-
-// Регистрируем обработчики событий по клику на overlay
-
-popupCardElement.addEventListener("click", closePopupByClickOnOverlay);
-popupPicElement.addEventListener("click", closePopupByClickOnOverlay);
-popupEditElement.addEventListener("click", closePopupByClickOnOverlay);
 
 // Изменение данных в профиле
 
@@ -94,25 +78,37 @@ function submitProfileForm(evt) {
 // Прикрепляем обработчик к форме:
 formEditElement.addEventListener("submit", submitProfileForm);
 
-
-//Создание карточки
-
-function getCard (name, link) {
-    // Создадим экземпляр карточки
-    const card = new Card(name,link);
-        // Создаём карточку и возвращаем наружу
-    const cardElement = card.generateCard();
-    return cardElement;
-}
+// Просмотр карточки
+const popupImage = new PopupWithImage(popupPicSelector);
+popupImage.setEventListeners();
 
 // Добавление элементов на страницу (общая функция)
 
+function renderInitial () {
+
+    const cardsList = new Section({
+        items: initialCards,
+        renderer: (cardItem) => {
+     // Создадим экземпляр карточки
+        const card = new Card({
+        data: initialCards,
+        name: cardItem.name, 
+        link: cardItem.link, 
+        handleOpenPicPopup: () => {popupImage.open(cardItem.name, cardItem.link)}});
+        const cardElement = card.generateCard();
+        cardsList.addItem(cardElement);
+    }   
+},
+    cardListSelector
+);
+
+cardsList.renderItems();
+
+}
+
 function render() {
     // Добавление первоначального массива
-    for (let i = 0; i < initialCards.length; i++) {
-        const card = getCard(initialCards[i].name, initialCards[i].link);
-        cardsContainer.append(card);
-    }
+    renderInitial();
     photoForm.addEventListener("submit", submitNewCard);
 }
 
@@ -143,6 +139,14 @@ const editFormValidation = new FormValidator(enableValidation, formEditElement);
 addFormValidation.enableValidation();
 editFormValidation.enableValidation();
 
+
+
+// Обработка событий
+//popupNewCard.setEventListeners();
+//popupEditProfile.setEventListeners();
+//popupView.setEventListeners();
+//popupChangeAvatar.setEventListeners();
+//popupConfirm.setEventListeners();
 
 
 

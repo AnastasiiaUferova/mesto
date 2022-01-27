@@ -41,8 +41,9 @@ const enableValidation = {
 
 const popupPicElement = document.querySelector(".popup_type_pic");
 const popupPicSubtitle = document.querySelector(".popup__subtitle");
-const popupPic = document.querySelector(".popup__pic");
+const popupPic = ".popup__pic";
 const popupEditElement = document.querySelector(".popup_type_edit");
+const picCloseButton = ".popup__close-button_type_pic";
 
 // popup-new-card
 const popupCardElement = document.querySelector(".popup_type_new-card");
@@ -58,7 +59,10 @@ const formCardElement = popupCardElement.querySelector(".popup__form-info_type_n
 const placeNameInput = popupCardElement.querySelector(".popup__input_type_placename");
 const placeUrlInput = popupCardElement.querySelector(".popup__input_type_url");
 
+//selector
 
+export const cardListSelector = ".photo-grid";
+const popupPicSelector = ".popup_type_pic";
 
-export { placeUrlInput, placeNameInput, initialCards, enableValidation, popupPicElement, popupPicSubtitle, popupPic, formEditElement, formCardElement, popupEditElement, popupCardElement};
+export { popupPicSelector, picCloseButton, placeUrlInput, placeNameInput, initialCards, enableValidation, popupPicElement, popupPicSubtitle, popupPic, formEditElement, formCardElement, popupEditElement, popupCardElement};
 

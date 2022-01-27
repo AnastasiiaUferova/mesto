@@ -1,4 +1,4 @@
-import { placeNameInput, placeUrlInput } from './constants.js'
+import { placeNameInput, placeUrlInput } from '../utils/constants.js'
 
 export class FormValidator {
     constructor(data, form) {
