@@ -62,7 +62,8 @@ const placeUrlInput = popupCardElement.querySelector(".popup__input_type_url");
 //selector
 
 export const cardListSelector = ".photo-grid";
-const popupPicSelector = ".popup_type_pic";
+const popupPicSelector = '.popup_type_pic';
+const popupFormPicSelector = '.popup__form-info_type_add';
 
-export { popupPicSelector, picCloseButton, placeUrlInput, placeNameInput, initialCards, enableValidation, popupPicElement, popupPicSubtitle, popupPic, formEditElement, formCardElement, popupEditElement, popupCardElement};
+export { popupFormPicSelector, popupPicSelector, picCloseButton, placeUrlInput, placeNameInput, initialCards, enableValidation, popupPicElement, popupPicSubtitle, popupPic, formEditElement, formCardElement, popupEditElement, popupCardElement};
 
