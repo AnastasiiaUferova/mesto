@@ -1,4 +1,4 @@
-import { placeNameInput, placeUrlInput } from '../utils/constants.js'
+import { placeNameInput, placeUrlInput } from "../utils/constants.js";
 
 export class FormValidator {
     constructor(data, form) {
@@ -9,6 +9,7 @@ export class FormValidator {
         this._inputErrorClass = data.inputErrorClass;
         this._errorClass = data.errorClass;
         this._form = form;
+        this._inputsList = this._form.querySelectorAll(this._inputSelector);
     }
 
     _showError(input, errorMessage) {
@@ -48,13 +49,12 @@ export class FormValidator {
     }
 
     _setInputListeners() {
-        const inputs = this._form.querySelectorAll(this._inputSelector);
         const submitButton = this._form.querySelector(this._submitButtonSelector);
 
-        inputs.forEach((input) => {
+        this._inputsList.forEach((input) => {
             input.addEventListener("input", () => {
                 this._checkIfInputValid(input);
-                this._toggleButtonError(inputs, submitButton);
+                this._toggleButtonError(this._inputsList, submitButton);
             });
         });
     }
@@ -66,11 +66,13 @@ export class FormValidator {
         }
     }
 
+    resetValidation() {
+        this._inputsList.forEach((inputElement) => {
+            this._hideError(inputElement);
+        });
+    }
+
     enableValidation() {
         this._setInputListeners();
-    };
-    
+    }
 }
-
-
-

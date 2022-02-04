@@ -27,7 +27,6 @@ const initialCards = [
     },
 ];
 
-
 const enableValidation = {
     formSelector: ".popup__form-info",
     inputSelector: ".popup__input",
@@ -48,7 +47,6 @@ const picCloseButton = ".popup__close-button_type_pic";
 // popup-new-card
 const popupCardElement = document.querySelector(".popup_type_new-card");
 
-
 //forms
 
 const formEditElement = popupEditElement.querySelector(".popup__form-info_type_edit");
@@ -58,7 +56,6 @@ const formCardElement = popupCardElement.querySelector(".popup__form-info_type_n
 
 const placeNameInput = popupCardElement.querySelector(".popup__input_type_placename");
 const placeUrlInput = popupCardElement.querySelector(".popup__input_type_url");
-
 
 const photoForm = document.querySelector(".popup__form-info_type_new-card");
 
@@ -79,8 +76,32 @@ const profileDescriptionElement = profileElement.querySelector(".profile__subtit
 //selector
 
 export const cardListSelector = ".photo-grid";
-const popupPicSelector = '.popup_type_pic';
-const popupFormPicSelector = '.popup__form-info_type_add';
+const popupPicSelector = ".popup_type_pic";
+const popupFormPicSelector = ".popup__form-info_type_add";
+const cardSelector = ".photo-grid__item";
+const likeButtonSelector = ".photo-grid__like";
+const likeActiveButtonSelector = ".photo-grid__like_active";
+const deleteButtonSelector = ".photo-grid__delete-button";
 
-export { popupFormPicSelector, popupPicSelector, picCloseButton, placeUrlInput, placeNameInput, initialCards, enableValidation, popupPicElement, popupPicSubtitle, popupPic, formEditElement, formCardElement, popupEditElement, popupCardElement};
+export {
+    deleteButtonSelector,
+    likeActiveButtonSelector,
+    likeButtonSelector,
+    cardSelector,
+    popupFormPicSelector,
+    popupPicSelector,
+    picCloseButton,
+    placeUrlInput,
+    placeNameInput,
+    initialCards,
+    enableValidation,
+    popupPicElement,
+    popupPicSubtitle,
+    popupPic,
+    formEditElement,
+    formCardElement,
+    popupEditElement,
+    popupCardElement,
+};
+
 
