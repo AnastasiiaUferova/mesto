@@ -10,7 +10,7 @@ export default class Card {
     }
     // здесь выполним все необходимые операции, чтобы вернуть разметку, логика обработки разметки
     _getTemplate() {
-        const htmlElement = document.querySelector(".template").content.querySelector(this._cardSelector).cloneNode(true);
+        const htmlElement = document.querySelector(this._cardSelector).content.querySelector(".photo-grid__item").cloneNode(true);
         return htmlElement;
     }
 
