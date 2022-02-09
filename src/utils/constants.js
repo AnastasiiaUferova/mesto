@@ -80,7 +80,7 @@ const popupPicSelector = ".popup_type_pic";
 const popupFormPicSelector = ".popup__form-info_type_add";
 const cardSelector = ".template";
 const likeButtonSelector = ".photo-grid__like";
-const likeActiveButtonSelector = ".photo-grid__like_active";
+const likeActiveButtonSelector = "photo-grid__like_active";
 const deleteButtonSelector = ".photo-grid__delete-button";
 
 export {

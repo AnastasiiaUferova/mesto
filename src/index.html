@@ -14,7 +14,10 @@
         <main class="content">
             <section class="profile root__profile">
                 <div class="profile__info-container">
+                    <div class="profile__avatar-container">
                     <img src="<%=require('./images/Аватар.png')%>" alt="Аватар" class="profile__avatar" />
+                    <button class="profile__avatar-edit-button"></button>
+                </div>
                     <div class="profile__info">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
                         <button class="profile__edit-button" type="button"></button>
@@ -38,7 +41,10 @@
                 <img src="." alt="." class="photo-grid__pic" />
                 <div class="photo-grid__title-container">
                     <h2 class="photo-grid__title"></h2>
-                    <button class="photo-grid__like"></button>
+                    <div class="photo-grid__like-container">
+                        <a class="photo-grid__like-number">0</a>
+                        <button class="photo-grid__like"></button>
+                </div>
                 </div>
             </li>
 		</template>
@@ -80,5 +86,28 @@
                 </form>
             </section>
         </section>
+
+        <section class="popup popup_type_confirm">
+            <section class="popup__container popup__container_type_confirm">
+                <button class="popup__close-button popup__close-button_confirm" type="button"></button>
+                <h2 class="popup__title popup__title_type_confirm">Вы уверены?</h2>
+                <button class="popup__save-button popup__save-button_type_confirm" type="button">Да</button>
+            </section>
+        </section>
+
+
+
+        <section class="popup popup_type_edit-avatar">
+            <section class="popup__container popup__container_type_form">
+                <button class="popup__close-button popup__close-button_type_edit-avatar" type="button"></button>
+                <h2 class="popup__title popup__title_type_edit-avatar">Обновить аватар</h2>
+                <form name="edit-form" class="popup__form-info popup__form-info_type_edit">
+                    <input id="avatar-input" type="url" name="avatar" value="" class="popup__input popup__input_type_avatar" placeholder="Ссылка на картинку" required>
+                    <span class="popup__error avatar-input-error">Error</span>
+                    <button class="popup__save-button" type="submit">Сохранить</button>
+                </form>
+            </section>
+        </section>
+
     </body>
 </html>
