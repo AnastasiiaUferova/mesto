@@ -25,9 +25,9 @@
 .root__photo-grid{margin:auto}
 .photo-grid{-moz-column-gap:17px;column-gap:17px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);max-width:880px;padding:0;row-gap:20px}@media (max-width:900px){.photo-grid{grid-template-columns:1fr;max-width:282px}}
 .photo-grid__item{background-color:#fff;border-radius:10px;display:flex;flex-direction:column;max-width:282px;position:relative}
-.photo-grid__title-container{display:flex;justify-content:space-between}
-.photo-grid__title{color:#000;font-family:Inter,Arial,Helvetica,sans-serif;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin-bottom:31px;margin-left:21px;margin-top:25px;overflow:hidden;padding:0 30px 0 0;text-overflow:ellipsis;white-space:nowrap;width:219px}
-.photo-grid__like{align-self:center;background-color:transparent;background-image:url(87ed371465c7a6a1cd01.svg);background-position:50%;background-repeat:no-repeat;border:none;flex-flow:column nowrap;height:30px;margin-right:20px;padding:0;transition:.3s ease-in-out;width:45px}.photo-grid__like:hover{cursor:pointer;opacity:.5}
+.photo-grid__title-container{display:flex;height:85px;justify-content:space-between;width:240px}
+.photo-grid__title{color:#000;font-family:Inter,Arial,Helvetica,sans-serif;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin-bottom:31px;margin-left:21px;margin-top:25px;overflow:hidden;padding:0 10px 0 0;text-overflow:ellipsis;white-space:nowrap;width:219px}
+.photo-grid__like{align-self:center;background-color:transparent;background-image:url(87ed371465c7a6a1cd01.svg);background-position:50%;background-repeat:no-repeat;border:none;flex-flow:column nowrap;height:30px;margin-right:0;padding:0;transition:.3s ease-in-out;width:45px}.photo-grid__like:hover{cursor:pointer;opacity:.5}
 .photo-grid__like_active{background-image:url(fe17a515669479b1e649.svg)}
 .photo-grid__pic{border-top-left-radius:10px;border-top-right-radius:10px;height:282px;max-width:282px;-o-object-fit:cover;object-fit:cover}.photo-grid__pic:hover{cursor:pointer;opacity:.6;transition:opacity 1s,opacity .6s linear}
 .footer{margin:auto;max-width:880px}@media (max-width:900px){.footer{max-width:282px}}
@@ -45,6 +45,8 @@
 
 
 .photo-grid__delete-button{background-color:transparent;background-image:url(823b0cf1b0b7e9cb7cad.svg);background-position:50%;background-repeat:no-repeat;border:none;height:19px;padding:0;position:absolute;right:20px;top:20px;transition:.3s ease-in-out;width:18px;z-index:1}.photo-grid__delete-button:hover{cursor:pointer;opacity:.67}
+
+.popup__container_type_confirm{background-color:#fff;border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);display:flex;flex-direction:column;position:relative;width:430px}@media (max-width:460px){.popup__container_type_confirm{margin-bottom:45px;width:282px}}
 @media (max-width:850px){.popup__close-button_type_pic{height:20px;right:0;top:-33px;width:20px}}
 .popup__container_type_pic{display:flex;flex-direction:column;position:relative}
 .popup__pic{max-height:75vh;max-width:75vw;-o-object-fit:cover;object-fit:cover}@media (max-width:450px){.popup__pic{height:299px;width:240px}}
@@ -55,4 +57,11 @@
 .popup__error_active{opacity:1;visibility:visible}
 .popup__save-button_inactive{background:#fff;border:1px solid rgba(0,0,0,.2);box-sizing:border-box;color:rgba(0,0,0,.2)}
 .popup__input_error{border-bottom:1px solid red}
+.photo-grid__like-number{color:#000;font-family:Inter,Arial,sans-serif;font-size:13px;font-style:normal;font-weight:400;line-height:1.21;min-height:13px;padding-top:0}
+.photo-grid__like-container{align-items:center;bottom:20px;display:flex;flex-flow:column-reverse nowrap;height:50px;left:250px;margin-right:20px;position:absolute;right:20px;text-align:center;width:0}
+.popup__title_type_confirm{margin-bottom:38px}
+.popup__save-button_type_confirm{margin-bottom:36px;margin-top:0}
+.profile__avatar-edit-button{background:none;border:0;cursor:pointer;height:100%;left:0;padding:0;position:absolute;top:0;transition:background-color .2s ease;width:100%}.profile__avatar-edit-button:hover{background-color:rgba(0,0,0,.8);background-image:url(a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat}
+.profile__avatar-container{border-radius:50%;margin:auto;position:relative}.profile__avatar-container:before{content:"";height:100%;left:0;position:absolute;top:0;width:100%}
+.popup__input_type_avatar{margin-bottom:0}
 
