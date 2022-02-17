@@ -7,7 +7,7 @@
 .profile{display:flex;flex-direction:row;justify-content:space-between;max-width:880px}@media (max-width:657px){.profile{align-content:center;flex-direction:column;justify-content:center;margin:auto;max-width:282px}}
 .root__profile{margin:40px auto 51px}@media (max-width:657px){.root__profile{margin:38.25px auto 36px}}
 .profile__add-button{align-self:center;background-color:transparent;background-image:url(d86bb2edc2f6eadb96b7.svg);background-position:50%;background-repeat:no-repeat;background-size:22px 22px;border:2px solid #fff;box-sizing:border-box;height:50px;padding:0;transition:.3s ease-in-out;width:150px}.profile__add-button:hover{cursor:pointer;opacity:.6}@media (max-width:657px){.profile__add-button{height:50px;width:282px}}
-.profile__avatar{border-radius:50%;height:120px;width:120px}@media (max-width:657px){.profile__avatar{align-self:center}}
+.profile__avatar{align-self:center;border-radius:50%;height:120px;-o-object-fit:cover;object-fit:cover;width:120px}@media (max-width:657px){.profile__avatar{align-self:center}}
 .profile__edit-button{align-self:center;background-color:transparent;background-image:url(ff0fcb318a3974db48d1.svg);background-position:50%;background-repeat:no-repeat;background-size:10px 10px;border:1px solid #fff;box-sizing:border-box;height:24px;padding:0;transition:.3s ease-in-out;width:24px}.profile__edit-button:hover{cursor:pointer;opacity:.6}
 .profile__info{align-self:center;display:grid;gap:16px 18px;grid-template-columns:1fr 24px;grid-template-rows:39px 18px;justify-self:flex-start;margin-left:30px;margin-top:12px;max-width:336px}@media (max-width:657px){.profile__info{gap:14px 10px;grid-template-rows:26px 14px;margin-bottom:36px;margin-left:0;margin-top:22.25px;max-width:282px}}
 .profile__name{-webkit-margin-before:0;-webkit-margin-after:0;align-self:center;color:#fff;font-family:Inter,Arial,Helvetica,sans-serif;font-size:42px;font-style:normal;font-weight:500;line-height:48px;margin:0;margin-block-end:0;margin-block-start:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media (max-width:657px){.profile__name{font-size:27px;line-height:33px;text-align:center}}
@@ -64,4 +64,6 @@
 .profile__avatar-edit-button{background:none;border:0;cursor:pointer;height:100%;left:0;padding:0;position:absolute;top:0;transition:background-color .2s ease;width:100%}.profile__avatar-edit-button:hover{background-color:rgba(0,0,0,.8);background-image:url(a086f758840ae814ecde.svg);background-position:50%;background-repeat:no-repeat}
 .profile__avatar-container{border-radius:50%;margin:auto;position:relative}.profile__avatar-container:before{content:"";height:100%;left:0;position:absolute;top:0;width:100%}
 .popup__input_type_avatar{margin-bottom:0}
+.photo-grid__delete-button-enable{display:block}
+.photo-grid__delete-button-remove{display:none}
 
