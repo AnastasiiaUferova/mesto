@@ -1,9 +1,13 @@
 export default class Card {
-    constructor(data, cardSelector, handleOpenPicPopup, likeButtonSelector, likeActiveButtonSelector, deleteButtonSelector) {
+    constructor(data,  userId, cardSelector, handleOpenPicPopup, handleDelete, likeButtonSelector, likeActiveButtonSelector, deleteButtonSelector) {
         this._name = data.name;
         this._link = data.link;
+        this._cardId = data._id,
+        this._ownerId = data.owner._id,
+        this._userId = userId,
         this._cardSelector = cardSelector;
         this._handleOpenPicPopup = handleOpenPicPopup;
+        this._handleDelete = handleDelete;
         this._likeButtonSelector = likeButtonSelector;
         this._likeActiveButtonSelector = likeActiveButtonSelector;
         this._deleteButtonSelector = deleteButtonSelector;
@@ -22,6 +26,11 @@ export default class Card {
         this._element.querySelector(".photo-grid__pic").alt = this._name;
         this._element.querySelector(".photo-grid__pic").src = this._link;
 
+        this._element.querySelector('.photo-grid__delete-button').classList.add(this._ownerId === this._userId ? 'photo-grid__delete-button-enable' : 'photo-grid__delete-button-remove');
+
+
+        
+
         return this._element;
     }
 
@@ -33,7 +42,7 @@ export default class Card {
 
         // Удаление карточки
 
-        this._element.querySelector(this._deleteButtonSelector).addEventListener("click", this._handleDeleteCard);
+        this._element.querySelector(this._deleteButtonSelector).addEventListener("click", this._handleDelete);
 
         //Открытие попапа
 
@@ -44,8 +53,15 @@ export default class Card {
         this._element.querySelector(this._likeButtonSelector).classList.toggle(this._likeActiveButtonSelector);
     }
 
-    _handleDeleteCard = () => {
+    deleteCard = () => {
         this._element.remove();
         this._element = null;
     };
+    
+
+    getId() {
+        return this._cardId 
+    }
+
+
 }

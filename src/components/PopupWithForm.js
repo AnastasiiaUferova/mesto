@@ -34,7 +34,6 @@ export default class PopupWithForm extends Popup {
         });
     }
 
-    remove;
 
     close() {
         super.close();

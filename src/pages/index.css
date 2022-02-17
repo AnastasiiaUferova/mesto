@@ -64,3 +64,5 @@
 @import url(../blocks/profile/__avatar-edit-button/pofile__avatar-edit-button.css);
 @import url(../blocks/profile/__avatar-container/profile__avatar-container.css);
 @import url(../blocks/popup/__input/_type/popup__input_type_avatar.css);
+@import url(../blocks/photo-grid/delete-button-enable/photo-grid__delete-button-enable.css);
+@import url(../blocks/photo-grid/__delete-button-remove/photo-grid__delete-button-remove.css)

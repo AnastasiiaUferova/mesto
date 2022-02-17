@@ -1,32 +1,3 @@
-// Добавляем изначальные карточки на сайт
-
-const initialCards = [
-    {
-        name: "Архыз",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    },
-    {
-        name: "Челябинская область",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    },
-    {
-        name: "Иваново",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    },
-    {
-        name: "Камчатка",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    },
-    {
-        name: "Холмогорский район",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    },
-    {
-        name: "Байкал",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    },
-];
-
 const enableValidation = {
     formSelector: ".popup__form-info",
     inputSelector: ".popup__input",
@@ -46,11 +17,13 @@ const picCloseButton = ".popup__close-button_type_pic";
 
 // popup-new-card
 const popupCardElement = document.querySelector(".popup_type_new-card");
+const popupAvatar = document.querySelector(".popup_type_edit-avatar");
 
 //forms
 
 const formEditElement = popupEditElement.querySelector(".popup__form-info_type_edit");
 const formCardElement = popupCardElement.querySelector(".popup__form-info_type_new-card");
+const avatarEditForm = popupAvatar.querySelector(".popup__form-info_type_edit")
 
 //inputs
 
@@ -72,6 +45,7 @@ const openCardPopupButtonElement = document.querySelector(".profile__add-button"
 const profileElement = document.querySelector(".profile");
 const profileNameElement = profileElement.querySelector(".profile__name");
 const profileDescriptionElement = profileElement.querySelector(".profile__subtitle");
+const profileAvatarElement = profileElement.querySelector(".profile__avatar");
 
 //selector
 
@@ -82,6 +56,7 @@ const cardSelector = ".template";
 const likeButtonSelector = ".photo-grid__like";
 const likeActiveButtonSelector = "photo-grid__like_active";
 const deleteButtonSelector = ".photo-grid__delete-button";
+const deletePopupSelector = ".popup_type_confirm"
 
 export {
     deleteButtonSelector,
@@ -93,7 +68,6 @@ export {
     picCloseButton,
     placeUrlInput,
     placeNameInput,
-    initialCards,
     enableValidation,
     popupPicElement,
     popupPicSubtitle,
@@ -102,6 +76,12 @@ export {
     formCardElement,
     popupEditElement,
     popupCardElement,
+    profileNameElement,
+    profileDescriptionElement,
+    profileAvatarElement,
+    deletePopupSelector,
+    popupAvatar,
+    avatarEditForm
 };
 
 
