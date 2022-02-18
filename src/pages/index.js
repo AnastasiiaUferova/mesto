@@ -14,9 +14,9 @@ import {
     formEditElement,
     popupEditElement,
     deleteButtonSelector,
-    likeActiveButtonSelector,
     likeButtonSelector,
     cardSelector,
+    likeActiveButtonClass
 } from "../utils/constants";
 import { FormValidator } from "../components/FormValidator";
 import { Section } from "../components/Section.js";
@@ -65,9 +65,30 @@ function createCard(data) {
         userId,
         cardSelector,
         () => {
+            api.setLike(cardItem.getId())
+              .then((data) => {
+                console.log(data.likes.length);
+                cardItem.getLikesNumber(data.likes.length);
+              })
+              .catch((err) => {
+                console.log(err);
+              })
+          },
+        () => {
+            api.deleteLike(cardItem.getId())
+              .then((data) => {
+                console.log(data.likes.length);
+                cardItem.getLikesNumber(data.likes.length);
+              })
+              .catch((err) => {
+                console.log(err);
+              })
+          },
+        () => {
             popupImage.open(data.name, data.link);
             console.log(userId);
             console.log(data.owner._id);
+            console.log(data.likes.length)
         },
         () => {
             popupConfirm.open();
@@ -81,11 +102,10 @@ function createCard(data) {
             });
         },
         likeButtonSelector,
-        likeActiveButtonSelector,
+        likeActiveButtonClass,
         deleteButtonSelector
     );
-    const cardElement = cardItem.generateCard();
-    return cardElement; // возваращаете готовую карточку
+    return cardItem; // возваращаете готовую карточку
 }
 
 // Добавление элементов на страницу
@@ -93,8 +113,10 @@ function createCard(data) {
 const cardsList = new Section(
     {
         renderer: (data) => {
-            // Создадим экземпляр карточки
-            const cardElement = createCard(data);
+
+            const card = createCard(data);
+            const cardElement = card.generateCard();
+            card.getLikesNumber(data.likes.length);
             cardsList.addItem(cardElement, "append");
         },
     },
@@ -117,7 +139,8 @@ const addCardForm = new PopupWithForm(
             picSaveButton.textContent = "Сохранение...";
             api.addCard(data)
                 .then((data) => {
-                    const cardElement = createCard(data);
+                    const card = createCard(data);
+                    const cardElement = card.generateCard();
                     cardsList.addItem(cardElement, "prepend");
                     addCardForm.close();
                     picSaveButton.textContent = "Создать";

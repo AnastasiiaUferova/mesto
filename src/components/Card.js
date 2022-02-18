@@ -1,16 +1,16 @@
 export default class Card {
-    constructor(data,  userId, cardSelector, handleOpenPicPopup, handleDelete, likeButtonSelector, likeActiveButtonSelector, deleteButtonSelector) {
+    constructor(data, userId, cardSelector, setLike, deleteLike, handleOpenPicPopup, handleDelete, likeButtonSelector, likeActiveButtonClass, deleteButtonSelector) {
         this._name = data.name;
         this._link = data.link;
-        this._cardId = data._id,
-        this._ownerId = data.owner._id,
-        this._userId = userId,
-        this._cardSelector = cardSelector;
+        (this._cardId = data._id), (this._likes = data.likes);
+        (this._ownerId = data.owner._id), (this._userId = userId), (this._cardSelector = cardSelector);
         this._handleOpenPicPopup = handleOpenPicPopup;
         this._handleDelete = handleDelete;
         this._likeButtonSelector = likeButtonSelector;
-        this._likeActiveButtonSelector = likeActiveButtonSelector;
+        this._likeActiveButtonClass = likeActiveButtonClass;
         this._deleteButtonSelector = deleteButtonSelector;
+        this._setLike = setLike;
+        this._deleteLike = deleteLike;
     }
     // здесь выполним все необходимые операции, чтобы вернуть разметку, логика обработки разметки
     _getTemplate() {
@@ -25,19 +25,23 @@ export default class Card {
         this._element.querySelector(".photo-grid__title").textContent = this._name;
         this._element.querySelector(".photo-grid__pic").alt = this._name;
         this._element.querySelector(".photo-grid__pic").src = this._link;
-
-        this._element.querySelector('.photo-grid__delete-button').classList.add(this._ownerId === this._userId ? 'photo-grid__delete-button-enable' : 'photo-grid__delete-button-remove');
-
-
-        
+        this._element.querySelector(".photo-grid__delete-button").classList.add(this._ownerId === this._userId ? "photo-grid__delete-button-enable" : "photo-grid__delete-button-remove");
+        if (this._likes.some((data) => data._id === this._userId)) {
+            this._addLikedClass();
+        }
 
         return this._element;
     }
 
     _setEventListeners() {
         // Лайк
+
         this._element.querySelector(this._likeButtonSelector).addEventListener("click", () => {
-            this._handleLikeToggle();
+            if (this._element.querySelector(this._likeButtonSelector).classList.contains(this._likeActiveButtonClass)) {
+                this._dislike(this._data);
+            } else {
+                this._like(this._data);
+            }
         });
 
         // Удаление карточки
@@ -49,19 +53,34 @@ export default class Card {
         this._element.querySelector(".photo-grid__pic").addEventListener("click", this._handleOpenPicPopup);
     }
 
-    _handleLikeToggle() {
-        this._element.querySelector(this._likeButtonSelector).classList.toggle(this._likeActiveButtonSelector);
-    }
-
     deleteCard = () => {
         this._element.remove();
         this._element = null;
     };
-    
 
-    getId() {
-        return this._cardId 
+    _dislike(data) {
+        this._deleteLike(data);
+        this._removeLikedClass();
     }
 
+    _like(data) {
+        this._setLike(data);
+        this._addLikedClass();
+    }
 
+    _removeLikedClass() {
+        this._element.querySelector(this._likeButtonSelector).classList.remove(this._likeActiveButtonClass); // убираем лайк в верстке
+    }
+
+    _addLikedClass() {
+        this._element.querySelector(this._likeButtonSelector).classList.add(this._likeActiveButtonClass); // добавляем лайк в верстке
+    }
+
+    getLikesNumber(number) {
+        this._element.querySelector(".photo-grid__like-number").textContent = number;
+    }
+
+    getId() {
+        return this._cardId;
+    }
 }

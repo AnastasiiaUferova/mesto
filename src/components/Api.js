@@ -103,7 +103,38 @@ export default class Api {
     .then(this._handleResponse);
     
 }
+
+setLike(cardId) {
+    return fetch(`${this._address}/cards/likes/${cardId}`, {
+        method: 'PUT',
+        headers: {
+            authorization: this._token,
+            "Content-Type": "application/json",
+        },
+    }).then((response) => {
+        if (response.ok) {
+            return response.json();
+        }
+        return Promise.reject(`Ошибка: ${response.status}`);
+    });
 }
+
+
+deleteLike(cardId) {
+    return fetch(`${this._address}/cards/likes/${cardId}`, {
+    method: 'DELETE',
+    headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+    },
+    }).then((response) => {
+        if (response.ok) {
+            return response.json();
+        }
+        return Promise.reject(`Ошибка: ${response.status}`);
+    });
+
+}}
 
 
 

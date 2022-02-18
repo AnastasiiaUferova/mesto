@@ -54,13 +54,13 @@ const popupPicSelector = ".popup_type_pic";
 const popupFormPicSelector = ".popup__form-info_type_add";
 const cardSelector = ".template";
 const likeButtonSelector = ".photo-grid__like";
-const likeActiveButtonSelector = "photo-grid__like_active";
+const likeActiveButtonClass = "photo-grid__like_active";
 const deleteButtonSelector = ".photo-grid__delete-button";
 const deletePopupSelector = ".popup_type_confirm"
 
 export {
     deleteButtonSelector,
-    likeActiveButtonSelector,
+    likeActiveButtonClass,
     likeButtonSelector,
     cardSelector,
     popupFormPicSelector,

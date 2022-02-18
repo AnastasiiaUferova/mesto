@@ -19,8 +19,8 @@ export class ConfirmPopup extends Popup {
 }
 
 close() {
-  this._form.reset();
   super.close();
+  this._form.reset();
 }
 
 }
