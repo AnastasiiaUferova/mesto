@@ -43,9 +43,9 @@ const openCardPopupButtonElement = document.querySelector(".profile__add-button"
 
 //profile
 const profileElement = document.querySelector(".profile");
-const profileNameElement = profileElement.querySelector(".profile__name");
-const profileDescriptionElement = profileElement.querySelector(".profile__subtitle");
-const profileAvatarElement = profileElement.querySelector(".profile__avatar");
+const profileNameElement = ".profile__name";
+const profileDescriptionElement = ".profile__subtitle";
+const profileAvatarElement = ".profile__avatar";
 
 //selector
 

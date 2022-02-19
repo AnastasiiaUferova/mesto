@@ -5,9 +5,10 @@ export default class Api {
     }
 
     _handleResponse = (response) => {
-        response.ok
-            ? response.json()
-            : Promise.reject(`Ошибка ${response.status}`)
+        if (response.ok) {
+            return response.json();
+        }
+        return Promise.reject(`Ошибка: ${response.status}`);
     }
 
     getCards() {
@@ -18,12 +19,7 @@ export default class Api {
                 'Content-Type': 'application/json',
             },
         })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                return Promise.reject(`Ошибка: ${response.status}`);
-            });
+            .then(this._handleResponse);
     }
 
     addCard(data) {
@@ -38,9 +34,7 @@ export default class Api {
                 link: data.link
             }),
         })
-            .then(response => response.ok
-                    ? response.json()
-            : Promise.reject(`${response.status}`))
+            .then(this._handleResponse)
     }
 
     getUserInfo () {
@@ -51,12 +45,7 @@ export default class Api {
                 'Content-Type': 'application/json',
             },
         })
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            }
-            return Promise.reject(`Ошибка: ${response.status}`);
-        });
+        .then(this._handleResponse);
     }
 
     changeUserInfo (data) {
@@ -81,12 +70,7 @@ export default class Api {
         method: "DELETE",
         headers: {
             authorization: this._token
-        }}).then((response) => {
-            if (response.ok) {
-                return response.json();
-            }
-            return Promise.reject(`Ошибка: ${response.status}`);
-        });
+        }}).then(this._handleResponse);
     }
 
     changeAvatar(data) {
@@ -111,12 +95,7 @@ setLike(cardId) {
             authorization: this._token,
             "Content-Type": "application/json",
         },
-    }).then((response) => {
-        if (response.ok) {
-            return response.json();
-        }
-        return Promise.reject(`Ошибка: ${response.status}`);
-    });
+    }).then(this._handleResponse);
 }
 
 
@@ -127,12 +106,7 @@ deleteLike(cardId) {
         authorization: this._token,
         "Content-Type": "application/json",
     },
-    }).then((response) => {
-        if (response.ok) {
-            return response.json();
-        }
-        return Promise.reject(`Ошибка: ${response.status}`);
-    });
+    }).then(this._handleResponse);
 
 }}
 
