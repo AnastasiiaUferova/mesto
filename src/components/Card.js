@@ -12,14 +12,14 @@ export default class Card {
         this._setLike = setLike;
         this._deleteLike = deleteLike;
     }
-    // здесь выполним все необходимые операции, чтобы вернуть разметку, логика обработки разметки
+    // here we will perform all the necessary operations to return the markup, markup processing logic
     _getTemplate() {
         const htmlElement = document.querySelector(this._cardSelector).content.querySelector(".photo-grid__item").cloneNode(true);
         return htmlElement;
     }
 
     generateCard() {
-        // записываем разметку в приватное поле, чтобы у других элементов был к ней доступ
+    // write the markup to a private field so that other elements can access it
         this._element = this._getTemplate();
         this._setEventListeners();
         this._element.querySelector(".photo-grid__title").textContent = this._name;
@@ -34,8 +34,7 @@ export default class Card {
     }
 
     _setEventListeners() {
-        // Лайк
-
+        // Like
         this._element.querySelector(this._likeButtonSelector).addEventListener("click", () => {
             if (this._element.querySelector(this._likeButtonSelector).classList.contains(this._likeActiveButtonClass)) {
                 this._dislike(this._data);
@@ -44,12 +43,10 @@ export default class Card {
             }
         });
 
-        // Удаление карточки
-
+        // Delete card
         this._element.querySelector(this._deleteButtonSelector).addEventListener("click", this._handleDelete);
 
-        //Открытие попапа
-
+        //Open popup
         this._element.querySelector(".photo-grid__pic").addEventListener("click", this._handleOpenPicPopup);
     }
 

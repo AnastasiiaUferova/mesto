@@ -8,32 +8,26 @@ export default class PopupWithForm extends Popup {
     }
 
     _getInputValues() {
-        // достаём все элементы полей
+        // get all field elements
         this._inputList = this._form.querySelectorAll(".popup__input");
-
-        // создаём пустой объект
+        // create an empty object
         this._formValues = {};
-
-        // добавляем в этот объект значения всех полей
+       // add the values of all fields to this object
         this._inputList.forEach((input) => {
             this._formValues[input.name] = input.value;
         });
-
-        // возвращаем объект значений
+       // return value object
         return this._formValues;
     }
 
     setEventListeners() {
         super.setEventListeners();
-        // при сабмите формы
         this._form.addEventListener("submit", (evt) => {
-            // отменим стандартное поведение
+        // override default behavior
             evt.preventDefault();
-
             this._handleFormSubmit(this._getInputValues());
         });
     }
-
 
     close() {
         super.close();

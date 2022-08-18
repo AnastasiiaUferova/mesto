@@ -30,19 +30,7 @@ const avatarEditForm = popupAvatar.querySelector(".popup__form-info_type_edit")
 const placeNameInput = popupCardElement.querySelector(".popup__input_type_placename");
 const placeUrlInput = popupCardElement.querySelector(".popup__input_type_url");
 
-const photoForm = document.querySelector(".popup__form-info_type_new-card");
-
-//popups: close-buttons
-const closeEditPopupButtonElement = popupEditElement.querySelector(".popup__close-button_type_edit");
-const closeCardPopupButtonElement = popupCardElement.querySelector(".popup__close-button_type_new-card");
-
-// popups: open-buttons
-
-const openEditPopupButtonElement = document.querySelector(".profile__edit-button");
-const openCardPopupButtonElement = document.querySelector(".profile__add-button");
-
 //profile
-const profileElement = document.querySelector(".profile");
 const profileNameElement = ".profile__name";
 const profileDescriptionElement = ".profile__subtitle";
 const profileAvatarElement = ".profile__avatar";

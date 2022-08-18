@@ -26,7 +26,7 @@ import UserInfo from "../components/UserInfo";
 import Api from "../components/Api";
 import { ConfirmPopup } from "../components/ConfirmPopup";
 
-//Передаем элементы попапа  в DOM
+//Pass popup elements to DOM
 
 //popup-edit
 
@@ -48,7 +48,7 @@ const api = new Api({
 
 let userId = 0;
 
-//Получение данных с сервера
+//Receiving data from the server
 
 Promise.all([api.getUserInfo(), api.getCards()])
     .then(([userData, cards]) => {
@@ -62,17 +62,17 @@ Promise.all([api.getUserInfo(), api.getCards()])
         console.log(err);
     });
 
-//Карточки
+//Cards
 
-// Просмотр карточки
+// Watch cards
 const popupImage = new PopupWithImage(popupPicSelector);
 popupImage.setEventListeners();
 
-// Удаление карточки
+// Delete cards
 const popupConfirm = new ConfirmPopup(deletePopupSelector);
 popupConfirm.setEventListeners();
 
-// Создание карточки
+// Create cards
 function createCard(data) {
     const cardItem = new Card(
         data,
@@ -112,17 +112,17 @@ function createCard(data) {
                         cardItem.deleteCard();
                         popupConfirm.close();
                     })
-                    .catch((err) => console.log(`Ошибка при удалении карточки: ${err}`));
+                    .catch((err) => console.log(`Deleting card error: ${err}`));
             });
         },
         likeButtonSelector,
         likeActiveButtonClass,
         deleteButtonSelector
     );
-    return cardItem; // возваращаете готовую карточку
+    return cardItem; // return the finished card
 }
 
-// Добавление карточек на страницу
+// Adding cards to the page
 
 const cardsList = new Section(
     {
@@ -136,24 +136,24 @@ const cardsList = new Section(
     cardListSelector
 );
 
-//Форма карточки
+//Card form
 
 const popupCardSelector = ".popup_type_new-card";
 
 const addCardForm = new PopupWithForm(
     {
         handleFormSubmit: (data) => {
-            picSaveButton.textContent = "Сохранение...";
+            picSaveButton.textContent = "Saving...";
             api.addCard(data)
                 .then((data) => {
                     const card = createCard(data);
                     const cardElement = card.generateCard();
                     cardsList.addItem(cardElement, "prepend");
                     addCardForm.close();
-                    picSaveButton.textContent = "Создать";
+                    picSaveButton.textContent = "Add card";
                 })
-                .catch((err) => console.log(`Ошибка при добавлении карточки: ${err}`))
-                .finally(() => (picSaveButton.textContent = "Создать"));
+                .catch((err) => console.log(`Deleting card error:: ${err}`))
+                .finally(() => (picSaveButton.textContent = "Add card"));
         },
     },
     popupCardSelector
@@ -161,28 +161,29 @@ const addCardForm = new PopupWithForm(
 
 addCardForm.setEventListeners();
 
-//Открытие формы
+// Opening a form
 
 document.querySelector(".profile__add-button").addEventListener("click", function () {
     addCardForm.open();
     addFormValidation.resetValidation();
     addFormValidation.disableSubmit(picSaveButton);
 });
-// Закрытие формы
+
+// Closing a form
 document.querySelector(".popup__close-button_type_new-card").addEventListener("click", function () {
     addCardForm.close();
     addCardForm.disableSubmit(picSaveButton);
 });
 
-//Профиль
+//Profile
 
 const userInfo = new UserInfo({
-    UserNameSelector: profileNameElement, //секции на странице
+    UserNameSelector: profileNameElement, //sections on the page
     JobSelector: profileDescriptionElement,
     AvatarSelector: profileAvatarElement,
 });
 
-//Форма профиля
+//Profile form
 
 const popupProfileSelector = ".popup_type_edit";
 
@@ -195,22 +196,22 @@ const editProfileForm = new PopupWithForm(
     popupProfileSelector
 );
 
-//Отправление данных профиля
+//Sending profile data
 
 function handleProfileFormSubmit(userData) {
-    profileSaveButton.textContent = "Сохранение...";
+    profileSaveButton.textContent = "Saving...";
     api.changeUserInfo(userData)
         .then(() => {
             userInfo.setUserInfo(userData.name, userData.about);
-            console.log(userData._id); //вставка информации из инпутов
+            console.log(userData._id); //inserting information from inputs
             editProfileForm.close();
         })
-        .catch((err) => console.log(`Ошибка при редактировании профиля: ${err}`))
-        .finally(() => (profileSaveButton.textContent = "Сохранить"));
+        .catch((err) => console.log(`Profile editing error: ${err}`))
+        .finally(() => (profileSaveButton.textContent = "Save profile"));
 }
 editProfileForm.setEventListeners();
 
-//Форма аватара
+//Avatar form
 const popupAvatarSelector = ".popup_type_edit-avatar";
 
 const editAvatarForm = new PopupWithForm(
@@ -222,20 +223,20 @@ const editAvatarForm = new PopupWithForm(
     popupAvatarSelector
 );
 
-//Отправление данных аватара
+//Sending avatar data
 function handleAvatarFormSubmit(userData) {
-    avatarSaveButton.textContent = "Сохранение...";
+    avatarSaveButton.textContent = "Saving...";
     api.changeAvatar(userData)
         .then(() => {
             userInfo.setUserAvatar(userData.avatar);
             editAvatarForm.close();
         })
-        .catch((err) => console.log(`Ошибка при редактировании аватара: ${err}`))
-        .finally(() => (avatarSaveButton.textContent = "Сохранить"));
+        .catch((err) => console.log(`Avatar editin error: ${err}`))
+        .finally(() => (avatarSaveButton.textContent = "Save avatar"));
 }
 editAvatarForm.setEventListeners();
 
-// Закрытие формы профиля
+// Closing the profile form
 document.querySelector(".popup__close-button_type_edit").addEventListener("click", function () {
     editProfileForm.close();
 });
@@ -247,27 +248,26 @@ function handleProfileOpenData() {
     avatarInput.value = userData.avatar;
 }
 
-// Закрытие формы аватара
+// Closing the avatar form
 document.querySelector(".popup__close-button_type_edit-avatar").addEventListener("click", function () {
     editAvatarForm.close();
 });
 
-//Открытие формы редактирования профиля
+//Opening the profile editing form
 document.querySelector(".profile__edit-button").addEventListener("click", function () {
     handleProfileOpenData();
     editFormValidation.resetValidation();
     editProfileForm.open();
 });
 
-//Открытие формы редактирования аватара
-
+//Opening the avatar editing form
 editAvatarButtonElement.addEventListener("click", function () {
     handleProfileOpenData();
     editFormValidation.resetValidation();
     editAvatarForm.open();
 });
 
-// Валидация
+// Validation
 
 const addFormValidation = new FormValidator(enableValidation, formCardElement);
 const editFormValidation = new FormValidator(enableValidation, formEditElement);

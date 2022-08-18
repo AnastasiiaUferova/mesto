@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Место</title>
+        <title>Mesto</title>
     </head>
     <body class="root">
         <header class="header root__header">
-            <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="логотип Mesto" />
+            <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="logo Mesto" />
         </header>
 
         <main class="content">
@@ -19,9 +19,9 @@
                     <button class="profile__avatar-edit-button"></button>
                 </div>
                     <div class="profile__info">
-                        <h1 class="profile__name">Жак-Ив Кусто</h1>
+                        <h1 class="profile__name">Jacques-Yves Cousteau</h1>
                         <button class="profile__edit-button" type="button"></button>
-                        <p class="profile__subtitle">Исследователь океана</p>
+                        <p class="profile__subtitle">Ocean explorer</p>
                     </div>
                 </div>
                 <button class="profile__add-button" type="button"></button>
@@ -61,13 +61,13 @@
         <section class="popup popup_type_edit">
             <section class="popup__container popup__container_type_form">
                 <button class="popup__close-button popup__close-button_type_edit" type="button"></button>
-                <h2 class="popup__title">Редактировать профиль</h2>
+                <h2 class="popup__title">Edit profile</h2>
                 <form name="edit-form" class="popup__form-info popup__form-info_type_edit">
-                    <input id="username-input" type="text" name="name" value="Жак-Ив Кусто" class="popup__input popup__input_type_name" minlength="2" maxlength="40" required>
+                    <input id="username-input" type="text" name="name" value="Jacques-Yves Cousteau" class="popup__input popup__input_type_name" minlength="2" maxlength="40" required>
                     <span class="popup__error username-input-error">Error</span>
-                    <input id="description-input" type="text" name="about" value="Исследователь океана" class="popup__input popup__input_type_job" minlength="2" maxlength="200" required>
+                    <input id="description-input" type="text" name="about" value="Ocean explorer" class="popup__input popup__input_type_job" minlength="2" maxlength="200" required>
                     <span class='popup__error description-input-error'>Error</span>
-                    <button class="popup__save-button" type="submit">Сохранить</button>
+                    <button class="popup__save-button" type="submit">Save profile</button>
                 </form>
             </section>
         </section>
@@ -76,13 +76,13 @@
         <section class="popup popup_type_new-card">
             <section class="popup__container popup__container_type_form">
                 <button class="popup__close-button popup__close-button_type_new-card" type="button"></button>
-                <h2 class="popup__title">Новое место</h2>
+                <h2 class="popup__title">New Place</h2>
                 <form name="add-form" class="popup__form-info popup__form-info_type_new-card">
-                    <input id="placename-input" type="text" name="name" value="" class="popup__input popup__input_type_placename" placeholder="Название" minlength="2" maxlength="30" required>
+                    <input id="placename-input" type="text" name="name" value="" class="popup__input popup__input_type_placename" placeholder="Place name" minlength="2" maxlength="30" required>
                     <span class="popup__error placename-input-error">Error</span>
-                    <input id="link-input" type="url" name="link" value="" class="popup__input popup__input_type_url" placeholder="Ссылка на картинку" required>
+                    <input id="link-input" type="url" name="link" value="" class="popup__input popup__input_type_url" placeholder="Place picture URL" required>
                     <span class="popup__error link-input-error">Error</span>
-                    <button class="popup__save-button popup__save-button_type_new-card" type="submit">Создать</button>
+                    <button class="popup__save-button popup__save-button_type_new-card" type="submit">Save card</button>
                 </form>
             </section>
         </section>
@@ -90,9 +90,9 @@
         <section class="popup popup_type_confirm">
             <section class="popup__container popup__container_type_confirm">
                 <button class="popup__close-button popup__close-button_confirm" type="button"></button>
-                <h2 class="popup__title popup__title_type_confirm">Вы уверены?</h2>
+                <h2 class="popup__title popup__title_type_confirm">Are you sure?</h2>
             <form class="popup__form-info" name="delete-card" novalidate>
-                <button class="popup__save-button popup__save-button_type_confirm-delete" type="submit">Да</button>
+                <button class="popup__save-button popup__save-button_type_confirm-delete" type="submit">Yes</button>
             </form>
             </section>
         </section>
@@ -102,11 +102,11 @@
         <section class="popup popup_type_edit-avatar">
             <section class="popup__container popup__container_type_form">
                 <button class="popup__close-button popup__close-button_type_edit-avatar" type="button"></button>
-                <h2 class="popup__title popup__title_type_edit-avatar">Обновить аватар</h2>
+                <h2 class="popup__title popup__title_type_edit-avatar">Edit avatar</h2>
                 <form name="edit-form" class="popup__form-info popup__form-info_type_edit">
                     <input id="avatar-input" type="url" name="avatar" value="" class="popup__input popup__input_type_avatar" placeholder="Ссылка на картинку" required>
                     <span class="popup__error avatar-input-error">Error</span>
-                    <button class="popup__save-button popup__save-button_type_avatar" type="submit">Сохранить</button>
+                    <button class="popup__save-button popup__save-button_type_avatar" type="submit">Save avatar</button>
                 </form>
             </section>
         </section>

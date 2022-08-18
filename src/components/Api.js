@@ -8,7 +8,7 @@ export default class Api {
         if (response.ok) {
             return response.json();
         }
-        return Promise.reject(`Ошибка: ${response.status}`);
+        return Promise.reject(`Error: ${response.status}`);
     }
 
     getCards() {
@@ -109,9 +109,3 @@ deleteLike(cardId) {
     }).then(this._handleResponse);
 
 }}
-
-
-
-
-
-
