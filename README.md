@@ -1,5 +1,7 @@
 # 'Mesto' (Place') interactive web page student project for [Yandex.Practicum](https://practicum.com)
 
+https://user-images.githubusercontent.com/78100943/189173224-95b006be-1b0a-478a-b798-cf9d9f63864a.mov
+
 ## [Check out the project on GitHubPages](https://anastasiiauferova.github.io/mesto/)
 
 ## Description
